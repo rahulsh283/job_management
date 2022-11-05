@@ -1,0 +1,122 @@
+{% extends 'user/partials/main.html' %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Book Form</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Book Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">My Book</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="user_books_form" method ="post" action = "/user/books/">
+                {% csrf_token %}
+                <div class="card-body">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Book Name</label>
+                    <input type="text" class="form-control" id="book_name" name="book_name" value = "{{ book_details.book_name }}" placeholder="Book Name">
+                  </div>
+                  <label id="book_name-error" class="error" for="book_name" style="display:none; position:relative; color:red;">This field is required.</label>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Writer Name</label>
+                    <input type="text" class="form-control" id="writer_name" name="writer_name" value = "{{ book_details.writer_name }}" placeholder="Writer name">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Vander Name</label>
+                    <input type = "text" class="form-control" id="vander_name" name="vander_name" value = "{{ book_details.vander_name }}"  placeholder="Vander Name">
+                        
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" value = "{{ book_details.price }}" placeholder="Price">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Purchase</label>
+                    <input type="text" class="form-control" id="purchase_date" name="purchase_date" value = "{{ book_details.purchase_date }}"  placeholder="Purchase Date">
+                  </div>
+                  
+                    
+                    
+  
+                <div class="card-footer">
+                  <input type="hidden" name="books_id" value="{{ id }}">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+
+        $("#user_books_form").validate({
+          rules:{
+            book_name : {
+              required: true,
+            },
+            writer_name: {
+              required:true,
+            },
+            price : {
+                required:true,
+                number : true,
+            }
+          },
+          submitHandler: function(form){
+    
+              $.ajax({
+    
+                url : "/user/books/",
+                type : "POST",
+                dataType: "json",
+                data : $("#user_books_form").serialize(),
+                success : function(data){
+    
+                  alert(data.msg);
+                  if(data.error == 0){
+                    window.location.replace("/user/books/table");
+                  
+                  }
+                }
+              });
+          }
+        });
+    });
+</script>
+{% endblock %}

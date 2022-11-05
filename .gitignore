@@ -1,0 +1,4 @@
+/management/user/migrations/*
+/management/user/_pycache_/*
+/management/management/_pycache_/*
+/management/middleware/_pycache_/*

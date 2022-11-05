@@ -1,0 +1,225 @@
+{% extends 'frontend/partials/main.html' %}
+
+{% block content %}
+
+  <!-- Header Start -->
+  <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white animated slideInDown">Registration</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="/">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Register</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+
+  <!-- Registration Start -->
+  <div class="container-xxl py-5">
+      <div class="container">
+          <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+              <h6 class="section-title bg-white text-center text-primary px-3">Registration</h6>
+              <h3 class="mb-5">Find a job & grow your career</h3>
+          </div>
+          <div class="row g-4">
+        
+              
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                  <form id ="registration_form" action="/registration" method="post">
+                    {% csrf_token %}
+                      <div class="row g-3">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">First Name</label>
+                                  <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                              </div>
+                              <label id="first_name-error" class="error" for="first_name" style="display:none; position:relative;">This field is required.</label>
+                          </div>
+                  
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="last_name">Last Name</label>
+                                  <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                                  
+                              </div>
+                              <label id="last_name-error" class="error" for="last_name" style="display:none; position:relative;">This field is required.</label>
+                              
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="last_name">Gender</label>
+                                <select class="form-control" id="gender" name="gender" placeholder="Gender">
+                                  <option value="">Select</option>
+                                  <option value="1">Male</option>
+                                  <option value="2">Female</option>
+                                  <option value="3">Other</option>
+                                </select>     
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                              <div class="form-group">
+                                  <label for="email_address">Email Address</label>
+                                  <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Email Address">
+                                  
+                              </div>
+                            
+                            <label id="email_address-error" class="error" for="email_address" style="display:none; position:relative;">This field is required.</label>
+                      
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="mobile_number">Mobile Number</label>
+                                <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="Mobile Number">
+                                
+                            </div>
+                            <div class="__assitive">
+                              {% comment %} <span class="__at">Recruiters will call you on this number</span> {% endcomment %}
+                            </div>
+                            <label id="mobile_number-error" class="error" for="mobile_number" style="display:none; position:relative;">This field is required.</label>
+                      
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country_id">Country</label>
+                                <select name="country_id" id="country_id" class="form-control" placeholder="Country">
+                                  <option value="">Select</option>
+                                  {% for value in country_list %}
+                                    <option value="{{ value.id }}">{{ value.name }}</option>
+                                  {% endfor %}
+                                </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="state_id">State</label>
+                                <select name="state_id" id="state_id" class="form-control" placeholder="State">
+                                  <option value="">Select</option>
+                                </select>
+                                
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="work_status">Work Status</label>
+                              <select class="form-control" id="work_status" name="work_status"  placeholder="Work Status">
+                                <option value="">Select</option>
+                                <option value="1">I'm Experienced</option>
+                                <option value="2">I'm Fresher</option>
+                              </select>         
+                            </div>
+                          </div>
+
+                               
+                          <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="resume">Resume</label>
+                                <input type="File" class="form-control" id="resume" name="resume" placeholder="Upload Resume">
+                                
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                                
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                              <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            $('#country_id').select2();
+            $('#state_id').select2();
+            $('#work_status').select2();
+            $('#gender').select2();
+
+            $("#country_id").on('change', function(){
+              
+              var country_id = $(this).val();
+              $.ajax({
+                url : '/state-list-by-country/'+country_id,
+                type: 'GET',
+                dataType: 'json',
+                data : {},
+                success: function(data){
+
+                  console.log(data);
+                  var option_list = '';
+                  if(data.error == 0){
+
+                    var state_list = data.state_list;
+                    $.each(state_list, function(k, v){
+                      option_list += '<option value="'+v.id+'">'+v.name+'</option>';
+                    });
+                  }
+                  
+                  $('#state_id').html(option_list);
+                }
+              });
+            });
+
+            $("#registration_form").validate({
+              rules:{
+                first_name : {
+                  required: true,
+                }
+              },
+              submitHandler: function(form){
+                  var formData = new FormData($("#registration_form")[0]);
+
+                  $.ajax({
+
+                    url : "/registration",
+                    type : "POST",
+                    dataType: "json",
+                    data : formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success : function(data){
+
+                      alert(data.msg);
+                      if(data.error == 0){
+                        location.reload();
+                      }
+                    }
+                  });
+              }
+            });
+        });
+    </script>
+{% endblock %}

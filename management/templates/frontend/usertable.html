@@ -1,0 +1,39 @@
+<div><h1>{{ msg }}</h1></div>
+<table border = 1>
+    </td>
+    <tr>
+      <th>id</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Mobile No.</th>
+      <th>Current Address</th>
+      <th>Email</th>
+      <th>Created Date</th>
+      <th>Course</th>
+      <th>Image</th>
+      <th>Action</th>
+    </tr>
+
+    {% for value in data %}
+    <tr>
+      <td>{{ value.id }}</td>
+      <td>{{ value.first_name }}</td>
+      <td>{{ value.middle_name }}</td>
+      <td>{{ value.last_name }}</td>
+      <td>{{ value.gender }}</td>
+      <td>{{ value.mobile_number }}</td>
+      <td>{{ value.current_address }}</td>
+      <td>{{ value.email_address }}</td>
+      <td>{{ value.added_date }}</td>
+      <td>{{ value.course }}</td>
+      <td>
+        <img src="{{ value.image.url }}">
+      </td>
+      <td>
+        <a href="/user/registration/{{ value.id }}">Edit</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>

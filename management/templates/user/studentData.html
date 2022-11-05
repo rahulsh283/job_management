@@ -1,0 +1,124 @@
+{% extends 'user/partials/main.html' %}
+{% block content%}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>DataTables</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">DataTables</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Student Data Details</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Roll No</th>
+                        <th>Student Name</th>
+                        <th>Class Name</th>
+                        <th>Section Name</th>
+                        <th>Mobile No</th>
+                        <th>Email Id</th>
+                        <th>Year</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                        <th>Delete Student Profile</th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                      {% for value in data %}
+                      <tr id="student_row{{ value.id }}">
+                        <td>{{ value.id }}</td>
+                        <td>{{ value.roll_no }}</td>
+                        <td>{{ value.student_name }}</td>
+                        <td>{{ value.class_name }}</td>
+                        <td>{{ value.section_name }}</td>
+                        <td>{{ value.mobile_no }}</td>
+                        <td>{{ value.email_address }}</td>
+                        <td>{{ value.year }}</td> 
+                        <td>
+                          {% if value.gender == '1' %} 
+                          Male
+                          {% elif value.gender == '2' %}
+                          Female
+                          {% else %}  
+                          Other
+                          {% endif %}
+                        </td> 
+                        <td>
+                          <a href="/user/students/add/{{ value.id }}">Edit</a>
+                        </td>
+                        <td>
+                          <a href="javascript:void(0);" data-id="{{ value.id }}" data-url="/user/students/delete/{{ value.id }}" class="delete-student">Delete</a>
+                        </td>
+
+
+                      </tr> 
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block script %}
+
+  <script>
+
+    $(document).ready(function() {
+      $(".delete-student").click(function(){
+
+          var url = $(this).data('url');
+          var id = $(this).data('id');
+          bootbox.confirm("Do you really want to delete record?", function(result) {
+          if(result){
+              $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                success: function(data){
+                  alert(data.msg);
+                  if (data.error == 0){
+                    $("#student_row"+id).remove();
+                  }
+                }
+            });
+          }
+        });
+    });
+  });
+  </script>
+{% endblock %}

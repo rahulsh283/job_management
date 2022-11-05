@@ -1,0 +1,158 @@
+{% extends 'user/partials/main.html' %}
+
+
+{% block content %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Employee Registration Form</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Employee Registration Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Create Account</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form id="employee_registration_form" method ="post" action = "/employee/add">
+                {% csrf_token %}
+                <div class="card-body">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Company Name</label>
+                    <input type="text" class="form-control" id="company_name" name="company_name"  placeholder="company Name">
+                  </div>
+                  <label id="company_name-error" class="error" for="company_name" style="display:none; position:relative; color:red;">This field is required.</label>
+                  <div class="form-group">
+
+                    <label for="exampleInputEmail1">Official Email</label>
+                    <input type="email" class="form-control" id="official_email" name="official_email" placeholder="Email">
+                  </div>
+                  <label id="official_email-error" class="error" for="official_email" style="display:none; position:relative; color:red;">This field is required.</label>
+                  <div class="form-group">
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Mobile Number</label>
+                    <input type = "text" class="form-control" id="mobile_number" name="mobile_number"   placeholder="+91">
+                  </div>
+                    <label id="mobile_number-error" class="error" for="mobile_number" style="display:none; position:relative; color:red;">This field is required.</label>
+                    <div class="form-group"> 
+
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Contact Person Name</label>
+                    <input type="text" class="form-control" id="contact_person_name" name="contact_person_name"  placeholder="contact_person_name">
+                  </div>
+                  <label id="contact_person_name" class="error" for="contact_person_name" style="display:none; position:relative; color:red;">This field is required.</label>
+                  <div class="form-group">
+
+                  <div class="form-group">
+                    <label for="pin_code">Pin Code</label>
+                    <input type="text" class="form-control" id="pin_code" name="pin_code"   placeholder="Pin Code">
+                  </div>
+                  <label id="pin_code" class="error" for="pin_code" style="display:none; position:relative; color:red;">This field is required.</label>
+                  <div class="form-group">
+                    <label for="company_type">Company Type</label>
+                        <select class="form-control" id="company_type" name="company_type" >
+                          
+                          <option value="">Select</option>
+                          <option value="1">company</option>
+                          <option value="2">consultant</option>
+                            
+                        </select>
+                  </div>
+                    <label id=<label id="company_type" class="error" for="company_type" style="display:none; position:relative; color:red;">This field is       required.</label>
+                    <div class="form-group">
+                    
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">GSTIN</label>
+                        <input type="text" class="form-control" id="GSTIN" name="GSTIN"   placeholder="GSTIN(optional)">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"   placeholder="Password">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password"   placeholder="Confirm Password">
+                      </div>
+
+  
+                <div class="card-footer">
+                  <input type="hidden" name="Employee_id" value="{{ id }}">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+{% block script %}
+  <script>
+      $(document).ready(function(){
+
+          $("#employee_registration_form").validate({
+            rules:{
+              company_name : {
+                required: true,
+              },
+              official_email: {
+                required:true,
+              },
+              contact_person_name : {
+                required:true,
+              },
+              mobile_number : {
+                required:true,
+                number : true,
+            }
+            },
+            submitHandler: function(form){
+      
+                $.ajax({
+      
+                  url : "/employee/add",
+                  type : "POST",
+                  dataType: "json",
+                  data : $("#employee_registration_form").serialize(),
+                  success : function(data){
+      
+                    alert(data.msg);
+                    if(data.error == 0){
+                      location.reload();
+                    
+                    }
+                  }
+                });
+            }
+          });
+      });
+  </script>
+{% endblock %}

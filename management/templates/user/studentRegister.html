@@ -1,0 +1,160 @@
+{% extends 'user/partials/main.html' %}
+
+{% block content%}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Student Registration Form</h1>
+        </div>
+ 
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Fill Student Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form id="student-register" action="/user/students/add" method="post">
+              {% csrf_token %}
+              <div class="card-body">
+                
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Roll No</label>
+                  <input type="text" class="form-control" id="roll_no" name="roll_no" value = "{{ student_details.roll_no }}"  placeholder="Roll No">
+                </div>
+                <label id="roll_no-error" class="error" for="roll_no" style="display:none; position:relative;color: red"> This field is required.</label>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Student Name</label>
+                  <input type="text" class="form-control" id="student_name" name="student_name" value = "{{ student_details.student_name }}" placeholder="Student Name">
+                </div>
+                <label id="student_name-error" class="error" for="student_name" style="display:none; position:relative;color: red"> This field is required.</label>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Gender</label>
+                  <select class="form-control" id="gender" name="gender" value  = "{{ student_details.gender }}"  placeholder="Gender">
+                  <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3">Other</option>
+                                </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Class</label>
+                  <input type="text" class="form-control" id="class_name" name="class_name" value = "{{ student_details.class_name }}" placeholder="Class">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Section</label>
+                  <input type="text" class="form-control" id="section_name" name="section_name" value = "{{ student_details.section_name }}"  placeholder="Section">
+                </div>
+                
+            
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Mobile No</label>
+                  <input type="text" class="form-control" id="mobile_no" name="mobile_no" value = "{{ student_details.mobile_no }}"  placeholder="Mobile No">
+                </div>
+                <div class="form-group">
+                  
+                  <label for="exampleInputEmail1">Course</label>
+                  <select class="form-control" id="course" name="course" value = "{{ student_details.course }}" placeholder="Course">
+                  <option value="1">BCA</option>
+                                  <option value="2">BBA</option>
+                                  <option value="3">B.Tech</option>
+                                  <option value="4">MBA</option>
+                                  <option value="5">MCA</option>
+                                  <option value="6">M.Tech</option>
+                                </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Email Id</label>
+                  <input type="email" class="form-control" id="email_address" name="email_address" value = "{{ student_details.email_address }}"  placeholder="Email Id">
+                </div>
+                
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Year</label>
+                  <input type="text" class="form-control" id="year" name="year" value = "{{ student_details.year }}" placeholder="Year">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Semester</label>
+                  <select class="form-control" id="semester" name="semester" value = "{{ student_details.semester }}" placeholder="Semester">
+                    {% for i in semester_count %}
+                    <option value ="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                  
+                    
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Join Date</label>
+                  <input type="datetime-local" class="form-control" id="join_date" name="join_date" value = "{{ student_details.join_date }}"  placeholder="" >
+                </div>
+                
+              
+              <!-- /.card-body -->
+
+              <div class="card-footer">
+                <input type="hidden" name="student_id" value="{{ id }}">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(document).ready(function(){
+        $("#student-register").validate({
+          rules:{
+            roll_no : {
+              required: true,
+            },
+            student_name : {
+              required : true,
+            }
+          },
+          submitHandler: function(form){
+
+              $.ajax({
+
+                url : "/user/students/add",
+                type : "POST",
+                dataType: "json",
+                data : $("#student-register").serialize(),
+                success : function(data){
+
+                  alert(data.msg);
+                  if(data.error == 0){
+
+                    window.location.replace("/user/students")
+                  }
+                }
+              });
+          }
+        });
+    }); 
+    
+    
+  </script>
+{% endblock %}

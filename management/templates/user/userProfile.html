@@ -1,0 +1,349 @@
+{% extends 'user/partials/main.html' %}
+
+{% block content%}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="min-height: 1604.71px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Profile</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">User Profile</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="card card-primary card-outline">
+            <div class="card-body box-profile">
+              <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle" src="/static/dist/img/user4-128x128.jpg" alt="User profile picture">
+              </div>
+
+              <h3 class="profile-username text-center">{{ request.session.user_detail.first_name }} {{ request.session.user_detail.last_name }}</h3>
+
+              <p class="text-muted text-center">Software Engineer</p>
+
+              <ul class="list-group list-group-unbordered mb-3">
+                <li class="list-group-item">
+                  <b>Followers</b> <a class="float-right">1,322</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Following</b> <a class="float-right">543</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Friends</b> <a class="float-right">13,287</a>
+                </li>
+              </ul>
+
+              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- About Me Box -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">About Me</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <strong><i class="fas fa-book mr-1"></i> Education</strong>
+
+              <p class="text-muted">
+                B.S. in Computer Science from the University of Tennessee at Knoxville
+              </p>
+
+              <hr>
+
+              <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+              <p class="text-muted">Malibu, California</p>
+
+              <hr>
+
+              <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+
+              <p class="text-muted">
+                <span class="tag tag-danger">UI Design</span>
+                <span class="tag tag-success">Coding</span>
+                <span class="tag tag-info">Javascript</span>
+                <span class="tag tag-warning">PHP</span>
+                <span class="tag tag-primary">Node.js</span>
+              </p>
+
+              <hr>
+
+              <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Update Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="#resume" data-toggle="tab">Resume</a></li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="tab-pane" id="activity">
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="user-block">
+                      <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
+                      <span class="username">
+                        <a href="#">Jonathan Burke Jr.</a>
+                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                      </span>
+                      <span class="description">Shared publicly - 7:30 PM today</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <p>
+                      Lorem ipsum represents a long-held tradition for designers,
+                      typographers and the like. Some people hate it and argue for
+                      its demise, but others ignore the hate as they create awesome
+                      tools to help create filler text for everyone from bacon lovers
+                      to Charlie Sheen fans.
+                    </p>
+
+                    <p>
+                      <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                      <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                      <span class="float-right">
+                        <a href="#" class="link-black text-sm">
+                          <i class="far fa-comments mr-1"></i> Comments (5)
+                        </a>
+                      </span>
+                    </p>
+
+                    <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                  </div>
+                  <!-- /.post -->
+
+                  <!-- Post -->
+                  <div class="post clearfix">
+                    <div class="user-block">
+                      <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
+                      <span class="username">
+                        <a href="#">Sarah Ross</a>
+                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                      </span>
+                      <span class="description">Sent you a message - 3 days ago</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <p>
+                      Lorem ipsum represents a long-held tradition for designers,
+                      typographers and the like. Some people hate it and argue for
+                      its demise, but others ignore the hate as they create awesome
+                      tools to help create filler text for everyone from bacon lovers
+                      to Charlie Sheen fans.
+                    </p>
+
+                    <form class="form-horizontal">
+                      <div class="input-group input-group-sm mb-0">
+                        <input class="form-control form-control-sm" placeholder="Response">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-danger">Send</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.post -->
+
+                  <!-- Post -->
+                  <div class="post">
+                    <div class="user-block">
+                      <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
+                      <span class="username">
+                        <a href="#">Adam Jones</a>
+                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                      </span>
+                      <span class="description">Posted 5 photos - 5 days ago</span>
+                    </div>
+                    <!-- /.user-block -->
+                    <div class="row mb-3">
+                      <div class="col-sm-6">
+                        <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                      </div>
+                      <!-- /.col -->
+                      <div class="col-sm-6">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
+                            <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-sm-6">
+                            <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
+                            <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
+                          </div>
+                          <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <p>
+                      <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
+                      <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
+                      <span class="float-right">
+                        <a href="#" class="link-black text-sm">
+                          <i class="far fa-comments mr-1"></i> Comments (5)
+                        </a>
+                      </span>
+                    </p>
+
+                    <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
+                  </div>
+                  <!-- /.post -->
+                </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane active" id="settings">
+                  <form class="form-horizontal" id="update_user_form">
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">First Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="first_name" name='first_name' placeholder="First Name" value="{{ user_details.first_name}}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">Last Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="last_name" name='last_name' placeholder="Last Name" value="{{ user_details.last_name}}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">Gender</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" id="gender" name='gender' placeholder="Gender" >
+                          <option value="">Select</option>
+                          <option value="1" {% if '1' == user_details.gender %} selected {% endif %}>Male</option>
+                          <option value="2" {% if '2' == user_details.gender %} selected {% endif %}>Female</option>
+                          <option value="3" {% if '3' == user_details.gender %} selected {% endif %}>Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">Mobile No</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="mobile_number" name='mobile_number' placeholder="Mobile No" value="{{ user_details.mobile_number}}">
+                      </div>
+                    </div>
+                    
+
+                    <div class="form-group row">
+                      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email_address" name='email_address' placeholder="Email" value="{{ user_details.email_address}}">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="country_id" class="col-sm-2 col-form-label">Country</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" name="country_id" id="country_id" placeholder="Country" >
+                          {% for value in country_list %}
+                          <option value="{{ value.id }}" {% if value.id == user_details.country_id_id %} selected {% endif %}>{{ value.name }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="state_id" class="col-sm-2 col-form-label">State</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" name="state_id" id="state_id" placeholder="State" >
+                          {% for value in state_list %}
+                          <option value="{{ value.id }}" {% if value.id == user_details.state_id_id %} selected {% endif %}>{{ value.name }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="inputExperience" class="col-sm-2 col-form-label">Work Status</label>
+                      <div class="col-sm-10">
+                        <select class="form-control" id="work_status" name='work_status' placeholder="Experience" >
+                          <option value="">Select</option>
+                          <option value="1" {% if '1' == user_details.work_status %} selected {% endif %}>I'm Experienced</option>
+                          <option value="2" {% if '2' == user_details.work_status %} selected {% endif %}>I'm Fresher</option>
+                         
+
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <div class="offset-sm-2 col-sm-10">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="tab-pane" id="resume">
+                  <form class="form-horizontal" id="update_resume_data">
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">Your Resume</label>
+                      <div class="col-sm-10">
+                        <a href="{{ user_details.upload_resume.url }}" id="user_updated_resume" target="_blank">Download</a>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputName" class="col-sm-2 col-form-label">Update Resume</label>
+                      <div class="col-sm-10">
+                        <input type="file" class="form-control" id="user_resume" name="user_resume" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="offset-sm-2 col-sm-10">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}
+
+{% block script %}
+    <script src="/static/js/front-user/profile.js"></script>
+{% endblock %}

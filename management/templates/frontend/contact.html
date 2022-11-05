@@ -1,0 +1,89 @@
+{% extends 'frontend/partials/main.html' %}
+
+{% block content %}
+
+  <!-- Header Start -->
+  <div class="container-fluid bg-primary py-5 mb-5 page-header">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <h1 class="display-3 text-white animated slideInDown">Contact Us</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="/">Home</a></li>
+                        <li class="breadcrumb-item text-white active" aria-current="page">Contact Us</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Header End -->
+
+
+  <!-- Registration Start -->
+  <div class="container-xxl py-5">
+      <div class="container">
+          <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+              <h6 class="section-title bg-white text-center text-primary px-3">Contact Us</h6>
+              <h1 class="mb-5">Contact us for query</h1>
+          </div>
+          <div class="row g-4">
+              
+              <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Well done!</h4>
+                        <p>{{ msg }}</p>
+                        <hr>
+                        <p class="mb-0">If you have another query please contact us again. We will reply as soon as pssible </p>
+                      </div>
+                       
+                     </div>
+                    {% endif %}
+                  <form id ="contact_form" action="/contact" method="post">
+                    {% csrf_token %}
+                      <div class="row g-3">
+                          
+                          <div class="col-md-6">
+                              <div class="form-floating">
+                                  <input type="email" class="form-control" id="email_address" name="email_address" placeholder="Email Address">
+                                  <label for="email_address">Email Address</label>
+                              </div>
+                            
+                            <label id="email_address-error" class="error" for="email_address" style="display:none; position:relative;">This field is required.</label>
+                      
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                <label for="subject">Subject</label>
+                            </div>
+                          
+                            <label id="subject-error" class="error" for="subject" style="display:none; position:relative;">This field is required.</label>
+                      
+                          </div>
+
+
+                          <div class="col-12">
+                              <div class="form-floating">
+                                  <textarea class="form-control" placeholder="Description" id="contact_description" name="contact_description" style="height: 100px"></textarea>
+                                  <label for="contact_description">Description</label>
+                              </div>
+                            
+                            <label id="contact_description-error" class="error" for="contact_description" style="display:none; position:relative;">This field is required.</label>
+                      
+                          </div>
+
+                          <div class="col-12">
+                              <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Contact End -->
+{% endblock %}
